@@ -59,7 +59,7 @@ return false;
     tmp_ctx.lineWidth = 2;
     tmp_ctx.lineJoin = 'round';
     tmp_ctx.lineCap = 'round';
-    tmp_ctx.strokeStyle = 'red';
+    tmp_ctx.strokeStyle = 'black';
     tmp_ctx.fillStyle = 'rgb(0, 0, 0)';
     
 
