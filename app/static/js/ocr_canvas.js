@@ -60,7 +60,7 @@ return false;
     tmp_ctx.lineJoin = 'round';
     tmp_ctx.lineCap = 'round';
     tmp_ctx.strokeStyle = 'black';
-    tmp_ctx.fillStyle = 'rgb(0, 0, 0)';
+    tmp_ctx.fillStyle = 'black';
     
 
     tmp_canvas.addEventListener('mousedown', function(e) {
