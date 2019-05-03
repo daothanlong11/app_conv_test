@@ -1,5 +1,3 @@
-var vocab = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9",":)", ":(","triangle","5star","scribble"];
-var index = -1;
 
 function clearDrawing() {
     var canvas = document.querySelector('#paint');
@@ -14,9 +12,7 @@ imgURI = canvas.toDataURL('image/jpeg', .5)
 // console.log("Submitting: " + imgStr);
 $.getJSON($SCRIPT_ROOT + '/_do_ocr', {
   imgURI:  imgURI,
-  index: index,
-  vocab: JSON.stringify(vocab),
-
+  
 }, function(data) {
   $('#result').text(data.result);
   $('input[name=a]').focus().select();
@@ -60,12 +56,13 @@ return false;
     
     
     /* Drawing on Paint App */
-    tmp_ctx.lineWidth = 15;
+    tmp_ctx.lineWidth = 2;
     tmp_ctx.lineJoin = 'round';
     tmp_ctx.lineCap = 'round';
-    tmp_ctx.strokeStyle = 'blue';
-    tmp_ctx.fillStyle = 'blue';
+    tmp_ctx.strokeStyle = 'red';
+    tmp_ctx.fillStyle = 'rgb(0, 0, 0)';
     
+
     tmp_canvas.addEventListener('mousedown', function(e) {
         tmp_canvas.addEventListener('mousemove', onPaint, false);
         

@@ -1,10 +1,11 @@
 from flask import render_template, flash, redirect, request, jsonify
 from app import app
-from app.model.preprocessor import Preprocessor as img_prep
-from app.model.alpha_cnn_predict import LiteOCR
+from preprocessor import Preprocessor as img_prep
+from alpha_cnn_predict import LiteOCR
 import json
 import sys
 import pickle
+import numpy as np 
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -21,14 +22,12 @@ def do_ocr():
 	# a = json.loads(request.args.get('a', 0, type=str))
 	data = request.args.get('imgURI', 0, type=str)
 	app.logger.debug("Data looks like " + data)
-	index = request.args.get('index', 0, type=int)
-	vocab = json.loads(request.args.get('vocab',0,type=str))
 	
-	pp = img_prep(fn="dataset.txt")
-	clf = pickle.load(open('/home/l/Documents/github/app_conv_test/app/model/finalized_model.sav','rb'))
-	char_prediction= clf.predict(pp.preprocess(data))
+	pp = img_prep()
+	clf = pickle.load(open('D:\\code\\python\\project2_framgia\\mnsit\\finalized_model.sav','rb'))
+	char_prediction= clf.predict([pp.preprocess(data)])[0]
 
-	result = "You entered a: " + char_prediction
+	result = "You entered a: %d"%char_prediction
 
 	app.logger.debug("Recognized a character")
 	return jsonify(result=result)
