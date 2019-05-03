@@ -26,7 +26,7 @@ def do_ocr():
 	
 	pp = img_prep(fn="dataset.txt")
 	clf = pickle.load(open('/home/l/Documents/github/app_conv_test/app/model/finalized_model.sav','rb'))
-	char_prediction= clf.predict([pp.preprocess(data)])
+	char_prediction= clf.predict(pp.preprocess(data))
 
 	result = "You entered a: " + char_prediction
 
