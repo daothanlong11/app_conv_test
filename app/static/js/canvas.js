@@ -59,6 +59,7 @@ return false;
     tmp_ctx.lineCap = 'round';
     tmp_ctx.strokeStyle = 'black';
     tmp_ctx.fillStyle = 'black';
+    tmp_ctx.stroke()
     
     tmp_canvas.addEventListener('mousedown', function(e) {
         tmp_canvas.addEventListener('mousemove', onPaint, false);
@@ -93,7 +94,7 @@ return false;
             tmp_ctx.beginPath();
             //ctx.moveTo(b.x, b.y);
             //ctx.lineTo(b.x+50, b.y+50);
-            tmp_ctx.arc(b.x, b.y, tmp_ctx.lineWidth / 2, 0, Math.PI * 2, !0);
+            tmp_ctx.arc(b.x, b.y, tmp_ctx.lineWidth , 0, Math.PI * 2, !0);
             tmp_ctx.fill();
             tmp_ctx.closePath();
             
