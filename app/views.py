@@ -1,11 +1,12 @@
-from flask import render_template, flash, redirect, request, jsonify
-from app import app
+from flask import render_template, flash, redirect, request, jsonify,Flask
+#from app import app
 from preprocessor import Preprocessor as img_prep
-from alpha_cnn_predict import LiteOCR
 import json
 import sys
 import pickle
 import numpy as np 
+
+app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -24,10 +25,13 @@ def do_ocr():
 	app.logger.debug("Data looks like " + data)
 	
 	pp = img_prep()
-	clf = pickle.load(open('D:\\code\\python\\project2_framgia\\mnsit\\finalized_model.sav','rb'))
+	clf = pickle.load(open('/home/l-ubuntus/Documents/code/html/app_conv_test/finalized_model.sav','rb'))
 	char_prediction= clf.predict([pp.preprocess(data)])[0]
 
 	result = "You entered a: %d"%char_prediction
 
 	app.logger.debug("Recognized a character")
 	return jsonify(result=result)
+
+if __name__ == '__main__':
+	app.run()

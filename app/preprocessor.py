@@ -18,7 +18,7 @@ class Preprocessor:
 		g = open("temp.jpg", "wb")
 		g.write(data)
 		g.close()
-		argv = 'D:\\code\\html\\app_conv_test\\temp.jpg'
+		argv = '/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg'
 		im = Image.open(argv).convert('L')
 		width = float(im.size[0])
 		height = float(im.size[1])
@@ -49,8 +49,8 @@ class Preprocessor:
 			# caculate vertical pozition
 			wleft = int(round(((28 - nwidth) / 2), 0))
 			newImage.paste(img, (wleft, 4))  # paste resized image on white canvas
-		newImage.save("E:\\digits\\digit.png")
-		img = cv2.imread("E:\\digits\\digit.png")
+		newImage.save("/home/l-ubuntus/Pictures/digits/digit.png")
+		img = cv2.imread("/home/l-ubuntus/Pictures/digits/digit.png")
 		img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		img = np.asarray(img).reshape(-1)
 		img = img/255.0

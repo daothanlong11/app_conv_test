@@ -1,4 +1,3 @@
-
 function clearDrawing() {
     var canvas = document.querySelector('#paint');
     var ctx = canvas.getContext('2d');
@@ -12,7 +11,6 @@ imgURI = canvas.toDataURL('image/jpeg', .5)
 // console.log("Submitting: " + imgStr);
 $.getJSON($SCRIPT_ROOT + '/_do_ocr', {
   imgURI:  imgURI,
-  
 }, function(data) {
   $('#result').text(data.result);
   $('input[name=a]').focus().select();
@@ -56,13 +54,12 @@ return false;
     
     
     /* Drawing on Paint App */
-    tmp_ctx.lineWidth = 2;
+    tmp_ctx.lineWidth = 20;
     tmp_ctx.lineJoin = 'round';
     tmp_ctx.lineCap = 'round';
     tmp_ctx.strokeStyle = 'black';
     tmp_ctx.fillStyle = 'black';
     
-
     tmp_canvas.addEventListener('mousedown', function(e) {
         tmp_canvas.addEventListener('mousemove', onPaint, false);
         
