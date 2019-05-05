@@ -49,8 +49,8 @@ class Preprocessor:
 			# caculate vertical pozition
 			wleft = int(round(((28 - nwidth) / 2), 0))
 			newImage.paste(img, (wleft, 4))  # paste resized image on white canvas
-		newImage.save("/home/l-ubuntus/Pictures/digits/digit.png")
-		img = cv2.imread("/home/l-ubuntus/Pictures/digits/digit.png")
+		newImage.save("/home/l-ubuntus/Pictures/digits/digit.jpg")
+		img = cv2.imread("/home/l-ubuntus/Pictures/digits/digit.jpg")
 		img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		img = np.asarray(img).reshape(-1)
 		img = img/255.0

@@ -59,6 +59,7 @@ return false;
     tmp_ctx.lineCap = 'round';
     tmp_ctx.strokeStyle = 'black';
     tmp_ctx.fillStyle = 'black';
+    tmp_ctx.fillRect(0, 0, canvas.width, canvas.height);
     tmp_ctx.stroke()
     
     tmp_canvas.addEventListener('mousedown', function(e) {
