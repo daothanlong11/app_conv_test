@@ -9,18 +9,21 @@ import cv2
 
 class Preprocessor:
 	def __init__(self):
-		self.url = None
-		self.data_1 = None
+		"""nothing"""
 		
 	def preprocess(self, jpgtxt):
-		# data = base64.decodestring(data)
-		url = jpgtxt
 		data = jpgtxt.split(',')[-1]
-		data_1 = base64.b64decode(data.encode('ascii'))
-
-		g = open("/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg", "wb")
-		g.write(data_1)
+		encode_string = data.encode('ascii')
+		decode_string = base64.b64decode(encode_string)
+		decode_image = np.fromstring(decode_string, dtype=np.uint8)
+		original_image = cv2.imdecode(decode_image, 1)
+		cv2.imwrite('/home/l-ubuntus/Documents/code/html/app_conv_test/app/temp.jpg',original_image)
+		g = open("temp.jpg", "wb")
+		g.write(data)
 		g.close()
+
+		pic = Image.open("temp.jpg")
+		M = np.array(pic) #now we have image data in numpy
 		argv = '/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg'
 		im = Image.open(argv).convert('L')
 		width = float(im.size[0])

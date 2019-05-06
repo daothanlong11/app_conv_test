@@ -18,11 +18,11 @@ def index():
 @app.route('/_do_ocr', methods=['GET', 'POST'])
 def do_ocr():
 	"""Add two numbers server side, ridiculous but well..."""
-	app.logger.debug("Accessed _do_ocr page with image data")
+	#app.logger.debug("Accessed _do_ocr page with image data")
 	# flash('Just hit the _add_numbers function')
 	# a = json.loads(request.args.get('a', 0, type=str))
 	data = request.args.get('imgURI', 0, type=str)
-	app.logger.debug("Data looks like " + data)
+	#app.logger.debug("Data looks like " + data)
 	
 	pp = img_prep()
 	clf = pickle.load(open('/home/l-ubuntus/Documents/code/html/app_conv_test/finalized_model.sav','rb'))

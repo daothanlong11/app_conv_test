@@ -5,24 +5,19 @@ function clearDrawing() {
 }
 
 function submitDrawing() {
-    var ua = window.navigator.userAgent;
- 
-    if (ua.indexOf("Chrome") > 0) {
-        // save image without file type
-        var canvas = document.getElementById("paint");
-        document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-
-        // save image as png
-        var link = document.createElement('a');
-        link.download = "test.png";
-        link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
-        link.click();
-    }
-    else {
-        alert("Please use Chrome");
-    }
+    var canvas = document.querySelector('#paint');
+    imgURI = canvas.toDataURL('image/jpeg', .5)
+    
+    // console.log("Submitting: " + imgStr);
+    $.getJSON($SCRIPT_ROOT + '/_do_ocr', {
+      imgURI:  imgURI,
+    }, function(data) {
+      $('#result').text(data.result);
+      $('input[name=a]').focus().select();
+    });
+    document.getElementById("result").innerHTML = "Working...";
+    return false;
 }
-
 //Here is the main code for the paint window
 (function() {
     
@@ -61,10 +56,7 @@ function submitDrawing() {
     tmp_ctx.lineWidth = 20;
     tmp_ctx.lineJoin = 'round';
     tmp_ctx.lineCap = 'round';
-    tmp_ctx.strokeStyle = 'black';
-    tmp_ctx.fillStyle = 'black';
-    tmp_ctx.fillRect(0, 0, canvas.width, canvas.height);
-    tmp_ctx.stroke()
+    
     
     tmp_canvas.addEventListener('mousedown', function(e) {
         tmp_canvas.addEventListener('mousemove', onPaint, false);

@@ -18,6 +18,9 @@ class Preprocessor:
 		g = open("temp.jpg", "wb")
 		g.write(data)
 		g.close()
+
+		pic = Image.open("temp.jpg")
+		M = np.array(pic) #now we have image data in numpy
 		argv = '/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg'
 		im = Image.open(argv).convert('L')
 		width = float(im.size[0])
