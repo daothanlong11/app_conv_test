@@ -13,13 +13,11 @@ class Preprocessor:
 		
 	def preprocess(self, jpgtxt):
 		data = jpgtxt.split(',')[-1]
-		encode_string = data.encode('ascii')
-		decode_string = base64.b64decode(encode_string)
-		decode_image = np.fromstring(decode_string, dtype=np.uint8)
-		original_image = cv2.imdecode(decode_image, 1)
-		cv2.imwrite('/home/l-ubuntus/Documents/code/html/app_conv_test/app/temp.jpg',original_image)
+		
+		data_1 = base64.b64decode(data.encode('ascii'))
+		
 		g = open("temp.jpg", "wb")
-		g.write(data)
+		g.write(data_1)
 		g.close()
 
 		pic = Image.open("temp.jpg")
