@@ -5,18 +5,18 @@ function clearDrawing() {
 }
 
 function submitDrawing() {
+var ua = window.navigator.userAgent;
 var canvas = document.querySelector('#paint');
-imgURI = canvas.toDataURL('image/jpeg', .5)
+document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+ 
+// save image as png
+var link = document.createElement('a');
+link.download = "test.png";
+link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
+//imgURI = canvas.toDataURL('image/jpeg')
 
 // console.log("Submitting: " + imgStr);
-$.getJSON($SCRIPT_ROOT + '/_do_ocr', {
-  imgURI:  imgURI,
-}, function(data) {
-  $('#result').text(data.result);
-  $('input[name=a]').focus().select();
-});
-document.getElementById("result").innerHTML = "Working...";
-return false;
+
 }
 
 //Here is the main code for the paint window

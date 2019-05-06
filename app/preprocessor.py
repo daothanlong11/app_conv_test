@@ -1,3 +1,4 @@
+from __future__ import print_function
 import pickle
 import numpy as np
 import os.path
@@ -8,15 +9,17 @@ import cv2
 
 class Preprocessor:
 	def __init__(self):
-		"""nothing"""
+		self.url = None
+		self.data_1 = None
 		
 	def preprocess(self, jpgtxt):
 		# data = base64.decodestring(data)
+		url = jpgtxt
 		data = jpgtxt.split(',')[-1]
-		data = base64.b64decode(data.encode('ascii'))
+		data_1 = base64.b64decode(data.encode('ascii'))
 
-		g = open("temp.jpg", "wb")
-		g.write(data)
+		g = open("/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg", "wb")
+		g.write(data_1)
 		g.close()
 		argv = '/home/l-ubuntus/Documents/code/html/app_conv_test/temp.jpg'
 		im = Image.open(argv).convert('L')
