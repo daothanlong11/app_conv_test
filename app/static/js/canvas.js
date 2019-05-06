@@ -5,18 +5,22 @@ function clearDrawing() {
 }
 
 function submitDrawing() {
-var ua = window.navigator.userAgent;
-var canvas = document.querySelector('#paint');
-document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    var ua = window.navigator.userAgent;
  
-// save image as png
-var link = document.createElement('a');
-link.download = "test.png";
-link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
-//imgURI = canvas.toDataURL('image/jpeg')
+    if (ua.indexOf("Chrome") > 0) {
+        // save image without file type
+        var canvas = document.getElementById("paint");
+        document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 
-// console.log("Submitting: " + imgStr);
-
+        // save image as png
+        var link = document.createElement('a');
+        link.download = "test.png";
+        link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
+        link.click();
+    }
+    else {
+        alert("Please use Chrome");
+    }
 }
 
 //Here is the main code for the paint window
